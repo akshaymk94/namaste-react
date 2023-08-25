@@ -1,0 +1,46 @@
+body {
+    margin: 0;
+    font-family: sans-serif;
+    background-color: aliceblue;
+}
+
+header {
+    border: none;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 15px;
+    background-color: #FF851B;
+    color: #5E350F;
+}
+
+#brandName {
+    font-weight: bolder;
+
+}
+
+#navLinks {
+    display: flex;
+    list-style: none;
+}
+
+#navLinks>li {
+    margin: auto 10px;
+}
+
+.page_section {
+    padding: 15px;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+}
+
+.restaurant_card {
+    border: 1px solid #5E350F;
+    width: 250px;
+    height: 300px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+}
