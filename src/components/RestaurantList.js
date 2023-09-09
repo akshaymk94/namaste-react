@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
-import { searchText, clearText } from "../utils/constants";
+import { searchText, clearText, restaurantImageUrl } from "../utils/constants";
 import { Link } from "react-router-dom";
+import StarIcon from "../utils/icons/starIcon";
 
 const RestaurantList = () => {
     const [cards, setCards] = useState([]);
@@ -8,9 +9,12 @@ const RestaurantList = () => {
     const [searchKey, setSearchKey] = useState('');
 
     useEffect(() => {
-        console.log("Inside useEffect");
         fetchRestaurants();
     }, []);
+
+    useEffect(() => {
+        handleSearch()
+    }, [searchKey]);
 
     const fetchRestaurants = async () => {
         try {
@@ -33,16 +37,18 @@ const RestaurantList = () => {
     const handleSearchChange = event => {
         const value = event.target.value;
         setSearchKey(value);
-        if (!value) {
-            setCards(cardsView);
-        }
     };
 
     const handleSearch = () => {
-        const searchResult = cardsView.filter(card =>
-            card.name.toLowerCase().includes(searchKey.toLowerCase())
-        );
-        setCards(searchResult);
+
+        if (!searchKey.trim() === '') {
+            setCards(cardsView)
+        } else {
+            const searchResult = cardsView.filter(card =>
+                card.name.toLowerCase().includes(searchKey.toLowerCase())
+            );
+            setCards(searchResult);
+        }
     };
 
     const resetCards = () => {
@@ -51,31 +57,35 @@ const RestaurantList = () => {
     };
 
     return (
-        <>
-            <input
-                type="search"
-                value={searchKey}
-                onChange={handleSearchChange}
-            />
-            <button onClick={handleSearch} disabled={!searchKey}>
-                {searchText}
-            </button>
-            <button onClick={handleFilter}>Only 4+ stars</button>
-            <button onClick={resetCards}>{clearText}</button>
-            <section className="page_section">
-                {cards.map((card, index) => (
-                    <Link key={index} to={`/restaurants/${card.id}`}>
-                        <article className="restaurant_card">
-                            <h3>{card.name}</h3>
-                            <h5>{card.cuisines?.join(', ')}</h5>
-                            <h5>Rs {card.costForTwo}</h5>
-                            <h5>{card.avgRating}/5</h5>
-                        </article>
-                    </Link>
-                ))}
+        <div className="p-7 w-9/12 m-auto">
+            <div className="mt-3 mb-10 flex flex-row items-center">
+                <input
+                    id="searchRestaurants"
+                    type="text"
+                    value={searchKey}
+                    onChange={handleSearchChange}
+                    placeholder="Search for Restaurants"
+                    className="border-0 border-gray-200 shadow-lg rounded-3xl pl-5 py-3 w-full outline-none"
+                />
+            </div>
+            <section className="grid gap-10 sm:grid-cols-1 md:grid-cols-2 lg:grid-cols-4">
+                {cards.map((card, index) => {
+                    const cloudinaryImageId = restaurantImageUrl(card.cloudinaryImageId)
+                    return (<Link key={index} to={`/restaurants/${card.id}`}>
+                        <>
+                            <img className="object-none w-full h-48 rounded-3xl" src={cloudinaryImageId} alt="Restaurant Image" />
+                            <h3 className="my-3 font-bold text-xl">{card.name}</h3>
+                            <h5 className="flex">
+                                <StarIcon />{card.avgRating}</h5>
+                            <div className="text-gray-600">
+                                <h5>{card.cuisines?.slice(0, 3).join(', ')}</h5>
+                                <h5>Rs {card.costForTwo}</h5>
+                            </div>
+                        </>
+                    </Link>)
+                })}
             </section>
-        </>
-    );
+        </div>);
 };
 
 export default RestaurantList;

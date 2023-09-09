@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import RestaurantDetails from "./RestaurantDetails";
+import MenuAccordion from "./MenuAccordion";
 
 const RestaurantMenu = () => {
 
     const [resDetails, setResDetails] = useState(null);
+    const [menuList, setMenuList] = useState([]);
     const { id } = useParams();
 
     useEffect(() => {
@@ -17,18 +20,22 @@ const RestaurantMenu = () => {
 
         const restaurantDetails = responseJson?.data?.cards[0]?.card?.card?.info
 
-        console.log(restaurantDetails)
+
+        const menuListFetched = responseJson?.data?.cards[2]?.groupedCard?.cardGroupMap?.REGULAR?.cards?.filter((card) => {
+            return card?.card?.card?.["@type"] === "type.googleapis.com/swiggy.presentation.food.v2.ItemCategory"
+
+        })
+
         setResDetails(restaurantDetails)
+        setMenuList(menuListFetched)
     }
 
     return (
         (resDetails === null ? "Loading..." :
-            <>
-                <h1>{resDetails.name}</h1>
-                <h3>{resDetails.areaName}</h3>
-
-
-            </>)
+            <div className="w-6/12 m-auto pt-8">
+                <RestaurantDetails resDetails={resDetails} />
+                <MenuAccordion menuList={menuList} />
+            </div>)
     )
 }
 
