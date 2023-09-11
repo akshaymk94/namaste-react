@@ -3,6 +3,8 @@ import { signinText, signoutText } from "../utils/constants";
 import { Link } from "react-router-dom";
 import useOnlineStatus from "../utils/custom_hooks/useOnlineStatus";
 import UserContext from "./contexts/UserContext";
+import { useSelector } from "react-redux";
+import { Cart } from "../utils/icons/CartIcon";
 
 const Header = () => {
 
@@ -11,6 +13,8 @@ const Header = () => {
     const onlineStatus = useOnlineStatus()
 
     const { firstname, lastname } = useContext(UserContext)
+
+    const { items } = useSelector((store) => store.cart)
 
     return (
         <div className="border-none p-5 shadow-lg shadow-gray-100 bg-white">
@@ -32,10 +36,7 @@ const Header = () => {
                         <button onClick={() => setIsLoggedIn(isLoggedIn ? false : true)}>{isLoggedIn ? signoutText : signinText}</button>
                     </li>
                     <li key={6} className="px-5">
-                        <Link>Cart</Link>
-                    </li>
-                    <li key={7} className="px-5">
-                        <Link>{`${lastname},${firstname}`}</Link>
+                        <Link to={"/cart"} className="flex"><Cart />{items.length > 0 && `${items.length}`}</Link>
                     </li>
                 </ul>
             </header>

@@ -19,7 +19,7 @@ const MenuAccordion = (props) => {
         <div>
             {menuList.map((item, index) => {
                 return (
-                    <MenuAccordionItem item={item} indexExpanded={expandedAccordionItem} selfIndex={index} handleAccordionItemHeaderClick={handleAccordionItemHeaderClick} />
+                    <MenuAccordionItem key={index} item={item} indexExpanded={expandedAccordionItem} selfIndex={index} handleAccordionItemHeaderClick={handleAccordionItemHeaderClick} />
                 )
             })}
         </div>

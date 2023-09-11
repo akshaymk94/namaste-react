@@ -4,9 +4,9 @@ const CategoryList = (props) => {
     const { itemCards } = props;
 
     return (
-        itemCards.map((item) => {
+        itemCards.map((item, index) => {
             return (
-                <CategoryListItem item={item?.card?.info} />
+                <CategoryListItem key={index} item={item?.card?.info} />
             );
         })
     );

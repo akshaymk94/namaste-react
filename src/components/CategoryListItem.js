@@ -1,5 +1,5 @@
-import { restaurantImageUrl } from "../utils/constants";
-import StopCircle from "../utils/icons/StopCircle";
+import { addBtnText, restaurantImageUrl } from "../utils/constants";
+import { StopCircle } from "../utils/icons/StopCircle";
 
 const CategoryListItem = (props) => {
 
@@ -19,8 +19,9 @@ const CategoryListItem = (props) => {
                     <p className="text-xs font-extralight">{item.description}</p>
                 </div>
             </div>
-            <div className="w-2/12">
+            <div className="w-2/12 flex flex-col items-center">
                 <img src={itemImageUrl} className="rounded-lg w-fit" />
+                <button className="py-2 w-9/12 mt-[-1rem] bg-white text-green-600 text-xs font-medium rounded-md border">{addBtnText}</button>
             </div>
         </div>
     );
