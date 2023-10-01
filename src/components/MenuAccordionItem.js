@@ -8,7 +8,7 @@ const MenuAccordionItem = (props) => {
     const { indexExpanded, selfIndex } = props;
 
     return (
-        <div className="mt-1 bg-gray-50 border-b-[16px] border-b-gray-200" onClick={() => props.handleAccordionItemHeaderClick(selfIndex)}>
+        <div className="mt-1 border-b-[16px] border-b-gray-200" onClick={() => props.handleAccordionItemHeaderClick(selfIndex)}>
             {/** 
              * Contains Accordion Items
              * Loop through list of categories to display Accordion Items

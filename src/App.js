@@ -9,8 +9,14 @@ import useOnlineStatus from './utils/custom_hooks/useOnlineStatus';
 import UserContext from './components/contexts/UserContext';
 import { Provider } from 'react-redux';
 import appStore from './store/appStore';
+import GlobalNavigation from './components/GlobalNavigation';
 
 // Lazy load the following pages to boost performance of the app
+
+const RestaurantList = lazy(() => import('./components/RestaurantList'))
+
+const FoodHome = lazy(() => import('./components/FoodHome'));
+
 const About = lazy(() => import('./components/About'));
 
 const Contact = lazy(() => import('./components/Contact'));
@@ -33,13 +39,14 @@ const AppLayout = () => {
 
         <Provider store={appStore}>
             <UserContext.Provider value={data}>
-                <div className='bg-gray-50 min-h-screen'>
+                <div className='border border-red-700'>
                     <Header />
                     {
                         onlineStatus ?
                             <Outlet /> :
                             <h1>Oops! Looks like you're offline!</h1>
                     }
+                    <GlobalNavigation />
                 </div>
             </UserContext.Provider>
         </Provider>
@@ -53,7 +60,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: '/',
-                element: <RestaurantList />,
+                element: <FoodHome />,
             },
             {
                 path: '/about',
