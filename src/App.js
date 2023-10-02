@@ -1,7 +1,6 @@
 import React, { Suspense, lazy, } from 'react';
 import ReactDOM from 'react-dom/client';
 import Header from './components/Header';
-import RestaurantList from './components/RestaurantList';
 import { Outlet, RouterProvider, createBrowserRouter } from 'react-router-dom';
 import Error from './components/Error';
 import RestaurantMenu from './components/RestaurantMenu';
@@ -12,8 +11,6 @@ import appStore from './store/appStore';
 import GlobalNavigation from './components/GlobalNavigation';
 
 // Lazy load the following pages to boost performance of the app
-
-const RestaurantList = lazy(() => import('./components/RestaurantList'))
 
 const FoodHome = lazy(() => import('./components/FoodHome'));
 
@@ -39,14 +36,14 @@ const AppLayout = () => {
 
         <Provider store={appStore}>
             <UserContext.Provider value={data}>
-                <div className='border border-red-700'>
+                <div>
                     <Header />
                     {
                         onlineStatus ?
                             <Outlet /> :
                             <h1>Oops! Looks like you're offline!</h1>
                     }
-                    <GlobalNavigation />
+                    {/* <GlobalNavigation /> */}
                 </div>
             </UserContext.Provider>
         </Provider>

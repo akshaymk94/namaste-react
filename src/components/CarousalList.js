@@ -12,7 +12,7 @@ const CarousalList = (props) => {
             {
                 carousalList.map((item, index) =>
                     isRestaurant ?
-                        <div className="w-1/4 flex-shrink-0">
+                        <div className="w-1/3 lg:w-1/4 flex-shrink-0">
                             <RestaurantCard index={index} card={item} />
                         </div> :
                         <CarousalListItem item={item} sectionConfig={sectionConfig} />

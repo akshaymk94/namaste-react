@@ -1,12 +1,14 @@
 import { restaurantImageUrl } from "../utils/constants";
+import { isSmallScreen } from "../utils/utils";
 
 const CarousalListItem = (props) => {
     const { item, sectionConfig } = props;
+
     itemImageUrl = restaurantImageUrl(item?.imageId)
 
     return (
         <div className="flex-shrink-0">
-            <img className={sectionConfig.sectionHeight} src={itemImageUrl} />
+            <img className={isSmallScreen ? sectionConfig.sectionHeightMobile : sectionConfig.sectionHeight} src={itemImageUrl} />
         </div>
     )
 }

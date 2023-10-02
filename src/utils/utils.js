@@ -22,3 +22,5 @@ export const hasTouchScreen = () => {
     }
     return hasTouchScreen;
 }
+
+export const isSmallScreen = window.innerWidth < 1024 ? true : false;

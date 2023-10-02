@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import Carousal from "./Carousal";
 import RestaurantList from "./RestaurantList";
 import { BEST_OFFERS, RESTAURANTS_ONLINE, DISH_CATEGORY, TOP_RESTAURANTS } from "../utils/food_home_section_config";
+import { get_restaurants_desktop_uri, get_restaurants_mobile_uri } from "../utils/api_urls/restaurant_list_api";
+import { hasTouchScreen, isSmallScreen } from "../utils/utils";
 
 const FoodHome = () => {
 
@@ -16,8 +18,10 @@ const FoodHome = () => {
     }, []);
 
     const fetchRestaurants = async () => {
+        const uri = isSmallScreen ? get_restaurants_mobile_uri : get_restaurants_desktop_uri;
+
         try {
-            const response = await fetch("https://www.swiggy.com/dapi/restaurants/list/v5?lat=12.9351929&lng=77.62448069999999&is-seo-homepage-enabled=true&page_type=DESKTOP_WEB_LISTING");
+            const response = await fetch(uri);
             const jsonResult = await response.json();
             const topicalBanner = jsonResult?.data?.cards.filter((card) => card.card.card.id === 'topical_banner')[0].card?.card?.gridElements?.infoWithStyle?.info || [];
             const dishCategories = jsonResult?.data?.cards.filter((card) => card.card.card.id === 'whats_on_your_mind')[0].card?.card?.imageGridCards?.info || [];
@@ -41,7 +45,7 @@ const FoodHome = () => {
             {
                 fetching ?
                     <h3>Loading</h3> :
-                    <div className="py-9 w-9/12 m-auto lg:pt-[100px]">
+                    <div className="mt-[80px] lg:py-9 lg:w-9/12 lg:m-auto lg:pt-[100px]">
                         <Carousal carousalList={topicalBanner} sectionConfig={BEST_OFFERS} isRestaurant={false} />
                         <Carousal carousalList={dishCategories} sectionConfig={DISH_CATEGORY} isRestaurant={false} />
                         <div className="border-b-2 w-full my-8 border-[#F0F0F5]"></div>

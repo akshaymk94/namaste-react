@@ -1,11 +1,9 @@
 
 import { Link } from "react-router-dom";
 import { globalNavItemsMobile, globalNavigationItems, brandNameConfig as brand, brandIconMobileConfig as brandMobile } from "../utils/global_navigation_config";
-import { hasTouchScreen } from "../utils/utils";
+import { isSmallScreen } from "../utils/utils";
 
 const Header = () => {
-
-    const isSmallScreen = window.innerWidth < 1024 ? true : false;
 
     const navItems = isSmallScreen ? globalNavItemsMobile : globalNavigationItems;
 
@@ -15,7 +13,7 @@ const Header = () => {
             px-4 py-3 
             flex items-center justify-between
             max-lg:border max-lg:border-b-[1px]
-            shadow-lg shadow-gray-100
+            lg:shadow-sm lg:shadow-gray-200
             bg-white
             lg:h-20
             ">
@@ -53,9 +51,9 @@ const Header = () => {
                 </div>
                 <ul className="flex flex-row items-center justify-end lg:justify-between lg:col-span-6">
                     {
-                        navItems.map((navItem) => {
+                        globalNavigationItems.map((navItem) => {
                             return (
-                                <li key={2} className="hover:text-[#ff851b] md:px-5">
+                                <li key={2} className={`${navItem.visibilityStyles} hover:text-[#ff851b] md:px-5`}>
                                     <Link to={navItem.link} className="flex flex-row items-center justify-between">
                                         <span className="pr-2">{navItem.icon}</span>
                                         <span className="font-semibold lg:font-medium text-sm lg:text-md lg:tracking-wider">{navItem.title}</span>
