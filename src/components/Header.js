@@ -2,6 +2,7 @@
 import { Link } from "react-router-dom";
 import { globalNavItemsMobile, globalNavigationItems, brandNameConfig as brand, brandIconMobileConfig as brandMobile } from "../utils/global_navigation_config";
 import { isSmallScreen } from "../utils/utils";
+import { swaggyLogoUrl } from "../utils/assets_url/images";
 
 const Header = () => {
 
@@ -25,9 +26,9 @@ const Header = () => {
                 lg:mx-auto
                 lg:grid-cols-12
                 xl:w-10/12">
-                <div className="flex justify-center max-lg:hidden">
+                <div className="flex justify-start items-center max-lg:hidden">
                     <Link to={brand.link}>
-                        <span className={"text-[#ff851b]"}>{brand.icon}</span>
+                        <img className="h-14 rotate-180" src={swaggyLogoUrl} />
                     </Link>
                 </div>
                 <div className="flex flex-nowrap max-lg:col-span-3 shrink-0 lg:items-center lg:col-span-5">

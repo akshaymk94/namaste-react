@@ -1,4 +1,5 @@
-import { addBtnText, restaurantImageUrl } from "../utils/constants";
+import { restaurantImageUrl } from "../utils/assets_url/images";
+import { addBtnText } from "../utils/constants";
 import { StopCircle } from "../utils/icons/StopCircle";
 
 const CategoryListItem = (props) => {

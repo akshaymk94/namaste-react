@@ -1,4 +1,4 @@
-import { restaurantImageUrl } from "../utils/constants";
+import { restaurantImageUrl } from "../utils/assets_url/images";
 import { isSmallScreen } from "../utils/utils";
 
 const CarousalListItem = (props) => {

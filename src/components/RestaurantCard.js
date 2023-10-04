@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
-import { restaurantImageUrl } from "../utils/constants";
 import StarIcon from "../utils/icons/starIcon";
+import { restaurantImageUrl } from "../utils/assets_url/images";
 
 const RestaurantCard = ({ index, card }) => {
     const cloudinaryImageId = restaurantImageUrl(card.cloudinaryImageId)
