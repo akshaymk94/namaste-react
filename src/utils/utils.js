@@ -24,3 +24,7 @@ export const hasTouchScreen = () => {
 }
 
 export const isSmallScreen = window.innerWidth < 1024 ? true : false;
+
+export const getPathName = (url) => {
+    return new URL(url).pathname;
+}

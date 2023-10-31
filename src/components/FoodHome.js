@@ -44,8 +44,8 @@ const FoodHome = () => {
         <>
             {
                 fetching ?
-                    <h3>Loading</h3> :
-                    <div className="mt-[80px] lg:py-9 lg:w-9/12 lg:m-auto lg:pt-[100px]">
+                    <h3>Loading...</h3> :
+                    <div>
                         <Carousal carousalList={topicalBanner} sectionConfig={BEST_OFFERS} isRestaurant={false} />
                         <Carousal carousalList={dishCategories} sectionConfig={DISH_CATEGORY} isRestaurant={false} />
                         <div className="border-b-2 w-full my-8 border-[#F0F0F5]"></div>

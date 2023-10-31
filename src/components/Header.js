@@ -1,12 +1,9 @@
 
 import { Link } from "react-router-dom";
-import { globalNavItemsMobile, globalNavigationItems, brandNameConfig as brand, brandIconMobileConfig as brandMobile } from "../utils/global_navigation_config";
-import { isSmallScreen } from "../utils/utils";
+import { globalNavigationItems, brandNameConfig as brand, brandIconMobileConfig as brandMobile } from "../utils/global_navigation_config";
 import { swaggyLogoUrl } from "../utils/assets_url/images";
 
 const Header = () => {
-
-    const navItems = isSmallScreen ? globalNavItemsMobile : globalNavigationItems;
 
     return (
         <div className="
@@ -64,22 +61,6 @@ const Header = () => {
                         })
                     }
                 </ul>
-                {/* <h1 className="font-bold text-3xl text-[#ff851b]">Swaggy</h1> */}
-
-                {/*  <ul className="flex text-gray-700 font-medium w-6/12 justify-between">
-                    {
-                        globalNavigationItems.map((navItem) => {
-                            return (
-                                <li key={2} className="px-5 hover:text-[#ff851b]">
-                                    <Link to={navItem.link} className="flex flex-row items-center justify-between">
-                                        <span className="pr-2">{navItem.icon}</span>
-                                        <span>{navItem.title}</span>
-                                    </Link>
-                                </li>
-                            )
-                        })
-                    }
-                </ul>*/ }
             </header>
         </div >
     );

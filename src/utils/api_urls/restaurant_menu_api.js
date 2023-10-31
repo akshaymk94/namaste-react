@@ -1,0 +1,3 @@
+export const build_restaurant_menu_mapi = (params) => `https://www.swiggy.com/mapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=${params.id}&submitAction=ENTER`
+
+export const build_restaurant_menu_dapi = (params) => `https://www.swiggy.com/dapi/menu/pl?page-type=REGULAR_MENU&complete-menu=true&lat=12.9351929&lng=77.62448069999999&restaurantId=${params.id}&catalog_qa=undefined&submitAction=ENTER`

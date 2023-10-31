@@ -7,7 +7,7 @@ const Carousal = (props) => {
 
     return (
         <div className="mb-9 px-3 flex flex-col">
-            <SectionTitle sectionTitle={sectionConfig.title} />
+            <SectionTitle sectionTitle={sectionConfig?.title} />
             <CarousalList carousalList={carousalList} sectionConfig={sectionConfig} isRestaurant={isRestaurant} />
         </div>
     )
